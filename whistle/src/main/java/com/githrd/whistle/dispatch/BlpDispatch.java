@@ -29,9 +29,7 @@ import com.githrd.whistle.controller.*;
 // 이 서블릿이 언제 실행될지 url-pattern을 지정하는 부분
 @WebServlet("*.blp")
 public class BlpDispatch extends HttpServlet {
-/*
-	
- */
+
 	private HashMap<String, BlpInter> map; // 실제요청내용과 실제 실행할 객체를 입력할 맵
 	
 	public void init(ServletConfig config) throws ServletException {
@@ -127,6 +125,9 @@ public class BlpDispatch extends HttpServlet {
  		// 원하는 컨트롤러를 선택해서
  		// 위에서 map에 등록된 것을 이용해서 꺼내면 된다.
  		BlpInter blp = map.get(real);
+ 		
+ 		// 응답문서 인코딩
+ 		resp.setCharacterEncoding("UTF-8");
  		
  		// 실행하고
  		String view = blp.exec(req, resp);
